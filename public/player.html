@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workout Video</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #000; }
+    .wrap { position: relative; width: 100%; height: 100%; }
+    iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .msg { color: #fff; font-family: sans-serif; text-align: center; padding-top: 40vh; }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="wrap"></div>
+  <script>
+    // Usage: player.html?id=VIDEO_ID
+    const id = new URLSearchParams(location.search).get("id");
+    const wrap = document.getElementById("wrap");
+
+    if (id && /^[\w-]{11}$/.test(id)) {
+      wrap.innerHTML =
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+        '?playsinline=1&rel=0&modestbranding=1" ' +
+        'allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ' +
+        'allowfullscreen></iframe>';
+    } else {
+      wrap.innerHTML = '<div class="msg">No video selected</div>';
+    }
+  </script>
+</body>
+</html>
